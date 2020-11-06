@@ -8,14 +8,14 @@
 	<title>iweb在线课堂</title>
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css"/>
-	<style>
+	<style> 
 		.topbar{
 			width:100%;
 			height:29px;
 			line-height:29px;
 			background:#f9f9f9;
 			border-bottom:1px solid #eee;
-			text-align:center;
+			text-align:right;
 		}
 		.container{
 			width:1000px;
@@ -45,7 +45,7 @@
 			float:right;/* 搜索条右浮动 */
 			margin-top:6px;
 		}
-		input{
+		.search>input{
 			width:430px:
 			height:32px;
 			border:1px solid #ccc;
@@ -53,6 +53,7 @@
 			outline:none;
 			padding-left:.6em;/* css中0.8可简写为.8 */
 			padding-right:.6em;
+			vertical-align:middle;/* 行内块元素与同一行内容竖直对齐 */
 		}
 		.search>.fa-search{
 			background:#57bc4c;
@@ -62,7 +63,30 @@
 			height: 32px;
 			line-height:32px;/* 文字竖直方向居中 */
 			text-align:center;/* 文字水平方向居中 */
+			vertical-align:middle;
 		}
+		.cart>{
+			float: right;
+			background: #f9f9f9;
+			border:1px solid #ddd ;
+			line-height:30px;
+			margin-top:6px;
+			margin-leeft:20px;
+			/* 修改光标样式 */
+			cursor:pointer;
+			}
+		.cart>.fa{/* 购物车+小三角 */
+			padding-left:0.6em;
+			padding-right:0.6em;
+			color:#57BC4C;
+			}
+			.cart>.caret{/* 小三角的动画基础类 */
+			transform: rotate(0);
+			transition:all .3s;
+					}
+		.cart>.caret-rotate{/* 小三角的动画目标类 */
+			transform: rotate(180deg);
+			}
 	</style>
 </head>
 <body>
@@ -89,17 +113,36 @@
 		<!-- 搜索条 -->
 		<div class="searchbar">
 			<div class="container">
-				<!-- logo图片 -->
+				<!-- 1.logo图片 -->
 			<img src="img/logo.png" alt="iweb logo">
-			<!-- 输入框 -->
+			<!-- 2.输入框 -->
+			<div class="search">
 			<input type="text" placeholder="课程搜索">
 			<span class="fa fa-search fa-lg"></span>
+			</div>
 			<!-- <input type="pastword">
 			<input type="radio">
 			<input type="checkbox">
 			<input type="button" value="注册新用户"> -->
-			<!-- 我的购物车 -->
+			<!-- 3.我的购物车 -->
+			<div class="cart" id="myCart">
+				<span class="fa fa-shopping-cart"></span>
+				<!-- <span class="fa fa-cart-"></span>
+				<span class="fa fa-cart"></span> -->
+				<span>我的购物车(<b >0</b>	)</span>
+				<span class="fa fa-caret-down caret " id="caret"></span>
+			</div>
 			</div>
 	</div>
+	
+	<script>
+		//鼠标进入我的购物车，则后面的小三角开始旋转，离开就转回来
+		myCart.onmouseenter=()=>{
+			caret.classList.add('caret-rotate')
+			}
+		myCart.onmouseleave=()=>{
+			caret.classList.remove('caret-rotate')		
+		}
+	</script>
 </body>
 </html>
